@@ -1,6 +1,6 @@
-// Offline build script: generates src/page.html and renders deterministic 1024x1024 entry.png
-// via local Playwright Chromium, then verifies PNG dimensions, chunks, and 1 MiB cap.
-import { writeFileSync, readFileSync, statSync, existsSync } from 'node:fs';
+// Offline build script: renders src/template.mjs -> .build/page.html -> deterministic 1024x1024 entry.png
+// via headless Chromium, and validates PNG header, dimensions, IEND chunk, and <= 1 MiB byte cap.
+import { mkdirSync, writeFileSync, readFileSync, statSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -9,7 +9,8 @@ import { computeRegionCounts } from './stories.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = dirname(HERE);
-const HTML_PATH = join(HERE, 'page.html');
+const BUILD_DIR = join(REPO_ROOT, '.build');
+const HTML_PATH = join(BUILD_DIR, 'page.html');
 const PNG_PATH = join(REPO_ROOT, 'entry.png');
 
 const CHROME_CANDIDATES = [
@@ -47,6 +48,7 @@ function validatePng(filePath) {
   return { width, height, bytes: buf.length };
 }
 
+mkdirSync(BUILD_DIR, { recursive: true });
 const { total, counts } = computeRegionCounts();
 const html = buildBroadsheetHtml();
 writeFileSync(HTML_PATH, html, 'utf8');
