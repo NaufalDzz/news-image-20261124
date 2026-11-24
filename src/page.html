@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Tuesday 24 November 2026 — The World in One Day</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1024px;
+    height: 1024px;
+    overflow: hidden;
+    background: #FBF8F1;
+    color: #141D2E;
+    font-family: "Noto Sans", "DejaVu Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 1024px;
+    height: 1024px;
+    display: flex;
+    flex-direction: column;
+    background: #FBF8F1;
+  }
+  /* Top Eyebrow */
+  .eyebrow {
+    height: 20px;
+    background: #141D2E;
+    color: #F8FAFC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    font-size: 9.2px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+  }
+  .eyebrow .mid { color: #FDE68A; letter-spacing: 0.5px; }
+
+  /* Masthead — huge full-width serif headline for 300px thumbnail dominance */
+  .masthead {
+    padding: 0 10px 2px;
+    text-align: center;
+    border-bottom: 2.5px solid #141D2E;
+  }
+  .masthead h1 {
+    font-family: "Noto Serif Display", "Noto Serif", "C059", Georgia, serif;
+    font-size: 67px;
+    font-weight: 900;
+    line-height: 0.99;
+    letter-spacing: -1.4px;
+    color: #0F172A;
+    transform: scaleX(1.03);
+  }
+  .deck {
+    margin: 3px 10px 4px;
+    text-align: center;
+    font-family: "Noto Serif", "C059", Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 11.7px;
+    color: #991B1B;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Region Pills */
+  .regions {
+    display: flex;
+    gap: 4px;
+    padding: 0 10px 4px;
+  }
+  .rpill {
+    flex: 1;
+    height: 17px;
+    border-radius: 2.5px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 8.4px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+  }
+  .rcnt {
+    background: rgba(255,255,255,0.22);
+    padding: 0 4px;
+    border-radius: 2px;
+    font-weight: 900;
+  }
+
+  /* UTC Bar */
+  .utc-bar {
+    margin: 0 10px 5px;
+    height: 19px;
+    background: #14233C;
+    color: #F1F5F9;
+    border-radius: 2.5px;
+    display: flex;
+    align-items: center;
+    padding: 0 7px 0 0;
+    font-size: 8.6px;
+    overflow: hidden;
+  }
+  .utc-badge {
+    background: #B91C1C;
+    color: #FFFFFF;
+    font-weight: 900;
+    font-size: 8.5px;
+    letter-spacing: 0.5px;
+    padding: 0 7px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 7px;
+    border-radius: 2.5px 0 0 2.5px;
+  }
+  .utc-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    white-space: nowrap;
+  }
+  .utc-item b { color: #FDE047; margin-right: 2px; }
+  .utc-sep { color: #64748B; margin: 0 3px; }
+
+  /* Main content container */
+  .body-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 10px;
+  }
+
+  /* Hero Row: 3 cards + Dark Navy Numbers panel */
+  .hero-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 184px;
+    gap: 6px;
+    height: 224px;
+  }
+  .hero-card, .grid-card {
+    background: #FFFDF9;
+    border: 1px solid #D5CCB8;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .card-loc {
+    height: 18px;
+    padding: 0 6px;
+    background: #F4EFE3;
+    border-bottom: 1px solid #E2DAC7;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .card-loc.sm { height: 16px; padding: 0 5px; gap: 4px; }
+  .num-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    color: #FFFFFF;
+    font-size: 8.2px;
+    font-weight: 900;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .num-dot.sm { width: 12px; height: 12px; font-size: 7.6px; }
+  .loc-txt {
+    font-size: 8.3px;
+    font-weight: 800;
+    letter-spacing: 0.35px;
+    color: #1E293B;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hero-art { height: 88px; border-bottom: 1px solid #E5DEC9; flex-shrink: 0; }
+  .hero-art svg, .grid-art svg { display: block; }
+  .hero-body {
+    flex: 1;
+    padding: 5px 7px 4px;
+    display: flex;
+    flex-direction: column;
+  }
+  .kicker {
+    font-size: 7.8px;
+    font-weight: 900;
+    letter-spacing: 0.45px;
+    margin-bottom: 2px;
+  }
+  .kicker.sm { font-size: 7.2px; margin-bottom: 1.5px; }
+  .hero-h {
+    font-family: "Noto Serif", "C059", Georgia, serif;
+    font-size: 15.2px;
+    font-weight: 900;
+    line-height: 1.12;
+    color: #0F172A;
+    margin-bottom: 3px;
+  }
+  .hero-p {
+    font-size: 8.9px;
+    line-height: 1.24;
+    color: #273549;
+    flex: 1;
+  }
+  .src-line {
+    font-size: 7.4px;
+    font-weight: 700;
+    color: #64748B;
+    margin-top: 2px;
+  }
+  .src-line.sm { font-size: 7.0px; }
+
+  /* Numbers Panel */
+  .numbers-panel {
+    background: #14233C;
+    color: #F8FAFC;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #0F172A;
+  }
+  .numbers-hdr {
+    background: #A61C1C;
+    color: #FFFFFF;
+    font-size: 9.2px;
+    font-weight: 900;
+    letter-spacing: 0.6px;
+    padding: 3.5px 7px;
+  }
+  .numbers-body {
+    flex: 1;
+    padding: 4px 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .num-row {
+    border-bottom: 1px solid rgba(148,163,184,0.24);
+    padding-bottom: 2px;
+  }
+  .num-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .num-val {
+    font-family: "Noto Serif", "C059", Georgia, serif;
+    font-size: 16.2px;
+    font-weight: 900;
+    line-height: 1.02;
+    color: #FDE047;
+  }
+  .num-lbl {
+    font-size: 7.6px;
+    line-height: 1.14;
+    color: #CBD5E1;
+  }
+
+  /* Middle Grid Rows (2 rows x 5 cards) */
+  .grid-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5.5px;
+    height: 161px;
+  }
+  .grid-art { height: 64px; border-bottom: 1px solid #E5DEC9; flex-shrink: 0; }
+  .grid-body {
+    flex: 1;
+    padding: 3.5px 5.5px 3px;
+    display: flex;
+    flex-direction: column;
+  }
+  .grid-h {
+    font-family: "Noto Serif", "C059", Georgia, serif;
+    font-size: 11.7px;
+    font-weight: 900;
+    line-height: 1.12;
+    color: #0F172A;
+    margin-bottom: 2.5px;
+  }
+  .grid-p {
+    font-size: 8.15px;
+    line-height: 1.20;
+    color: #273549;
+    flex: 1;
+  }
+
+  /* Lower Band: Map + 2-Col Digest */
+  .lower-band {
+    display: grid;
+    grid-template-columns: 288px 1fr;
+    gap: 7px;
+    flex: 1;
+    min-height: 200px;
+  }
+  .map-box, .digest-box {
+    background: #FFFDF9;
+    border: 1px solid #D5CCB8;
+    border-radius: 3px;
+    padding: 4px 6px 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  .sec-hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1.5px solid #141D2E;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+    font-size: 8.8px;
+    font-weight: 900;
+    letter-spacing: 0.45px;
+    color: #141D2E;
+  }
+  .sec-hdr span.sub { font-weight: 700; color: #64748B; font-size: 7.8px; letter-spacing: 0.2px; }
+  .digest-cols {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .d-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .d-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 8.15px;
+    line-height: 1.18;
+  }
+  .d-num {
+    width: 13px;
+    height: 12px;
+    border-radius: 2px;
+    color: #FFFFFF;
+    font-size: 7.2px;
+    font-weight: 900;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .d-txt { color: #1E293B; }
+  .d-txt b { color: #0F172A; }
+  .d-src { color: #64748B; font-style: italic; font-size: 7.3px; }
+  .mini-tag {
+    display: inline-block;
+    margin-left: 3px;
+    padding: 0 3px;
+    border-radius: 2px;
+    font-size: 6.5px;
+    font-weight: 900;
+    color: #FFFFFF;
+    vertical-align: middle;
+  }
+  .mini-tag.claim { background: #D97706; }
+  .mini-tag.rep { background: #475569; }
+
+  /* Date Check Audit Box */
+  .date-check {
+    margin: 5px 10px 3px;
+    padding: 4px 7px;
+    background: #FFF7F5;
+    border: 1.5px solid #B91C1C;
+    border-radius: 3px;
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    height: 49px;
+  }
+  .dc-badge {
+    background: #B91C1C;
+    color: #FFFFFF;
+    font-size: 8.6px;
+    font-weight: 900;
+    letter-spacing: 0.4px;
+    padding: 4px 6px;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 1.1;
+    flex-shrink: 0;
+  }
+  .dc-text {
+    font-size: 7.65px;
+    line-height: 1.24;
+    color: #1E293B;
+  }
+  .dc-text b.inc { color: #141D2E; }
+  .dc-text b.exc { color: #991B1B; }
+
+  /* Micro Legend Footer */
+  .legend {
+    height: 16px;
+    padding: 0 10px 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 7.3px;
+    color: #475569;
+  }
+  .leg-pills { display: flex; align-items: center; gap: 6px; }
+  .lp {
+    display: inline-block;
+    padding: 0.5px 4px;
+    border-radius: 2px;
+    color: #FFFFFF;
+    font-weight: 900;
+    font-size: 6.8px;
+    margin-right: 2px;
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="eyebrow">
+    <span>THE WORLD IN ONE DAY</span>
+    <span class="mid">35 DATED STORIES &middot; 9 REGIONS &middot; EVERY ONE DATED TUESDAY 24 NOVEMBER 2026</span>
+    <span>EDITION TO 09:45 UTC</span>
+  </header>
+
+  <section class="masthead">
+    <h1>Tuesday 24 November 2026</h1>
+  </section>
+
+  <div class="deck">US blacklists Megaspeed as Asian chip stocks surge · Russian drone breaches Poland &amp; Zaporizhzhia strike kills 2 · China taps Pakistan’s Zeeshan Ali for Shenzhou-24</div>
+  <div class="regions"><div class="rpill" style="background:#1D4ED8"><span class="rname">EUROPE</span><span class="rcnt">5</span></div><div class="rpill" style="background:#6D28D9"><span class="rname">AMERICAS</span><span class="rcnt">7</span></div><div class="rpill" style="background:#B45309"><span class="rname">EAST ASIA</span><span class="rcnt">5</span></div><div class="rpill" style="background:#B91C1C"><span class="rname">MIDDLE EAST</span><span class="rcnt">4</span></div><div class="rpill" style="background:#0F766E"><span class="rname">SE ASIA</span><span class="rcnt">3</span></div><div class="rpill" style="background:#C2410C"><span class="rname">SOUTH ASIA</span><span class="rcnt">3</span></div><div class="rpill" style="background:#15803D"><span class="rname">AFRICA</span><span class="rcnt">3</span></div><div class="rpill" style="background:#0369A1"><span class="rname">OCEANIA</span><span class="rcnt">3</span></div><div class="rpill" style="background:#334155"><span class="rname">GLOBAL</span><span class="rcnt">2</span></div></div>
+
+  <div class="utc-bar">
+    <div class="utc-badge">UTC</div>
+    <div class="utc-strip"><span class="utc-item"><b>00:52</b> US blacklists Megaspeed</span><span class="utc-sep">&middot;</span><span class="utc-item"><b>01:32</b> M5.3 Nepal–Sikkim quake</span><span class="utc-sep">&middot;</span><span class="utc-item"><b>03:35</b> Seoul scrambles jets</span><span class="utc-sep">&middot;</span><span class="utc-item"><b>05:05</b> Iran Hormuz mine claim</span><span class="utc-sep">&middot;</span><span class="utc-item"><b>06:00</b> Meta Muse launches in UK</span><span class="utc-sep">&middot;</span><span class="utc-item"><b>09:22</b> Russian drone enters Poland</span></div>
+  </div>
+
+  <div class="body-wrap">
+    <section class="hero-row">
+      
+      <article class="hero-card">
+        <div class="card-loc">
+          <span class="num-dot" style="background:#B45309">1</span>
+          <span class="loc-txt">WASHINGTON &amp; TAIPEI</span>
+        </div>
+        <div class="hero-art"><svg viewBox="0 0 264 88" width="100%" height="88" xmlns="http://www.w3.org/2000/svg">
+        <rect width="264" height="88" fill="#EEF4EE"/>
+        <!-- Subtle chart grid -->
+        <g stroke="#CFE0D1" stroke-width="1">
+          <line x1="112" y1="18" x2="256" y2="18"/>
+          <line x1="112" y1="36" x2="256" y2="36"/>
+          <line x1="112" y1="54" x2="256" y2="54"/>
+          <line x1="112" y1="72" x2="256" y2="72"/>
+        </g>
+        <!-- Left panel: silicon chip + Entity List stamp -->
+        <rect x="8" y="8" width="96" height="72" rx="4" fill="#FAF6EE" stroke="#CBD5E1" stroke-width="1.2"/>
+        <g transform="translate(34,20)">
+          <rect x="0" y="0" width="44" height="44" rx="4" fill="#1E293B" stroke="#0F172A" stroke-width="1.5"/>
+          <rect x="10" y="10" width="24" height="24" rx="2" fill="#22C55E"/>
+          <rect x="15" y="15" width="14" height="14" rx="1" fill="#14532D"/>
+          <!-- Chip pins -->
+          <g stroke="#475569" stroke-width="2.2">
+            <line x1="10" y1="-6" x2="10" y2="0"/><line x1="22" y1="-6" x2="22" y2="0"/><line x1="34" y1="-6" x2="34" y2="0"/>
+            <line x1="10" y1="44" x2="10" y2="50"/><line x1="22" y1="44" x2="22" y2="50"/><line x1="34" y1="44" x2="34" y2="50"/>
+            <line x1="-6" y1="10" x2="0" y2="10"/><line x1="-6" y1="22" x2="0" y2="22"/><line x1="-6" y1="34" x2="0" y2="34"/>
+            <line x1="44" y1="10" x2="50" y2="10"/><line x1="44" y1="22" x2="50" y2="22"/><line x1="44" y1="34" x2="50" y2="34"/>
+          </g>
+        </g>
+        <!-- Red angled ENTITY LIST stamp -->
+        <g transform="translate(56,50) rotate(-13)">
+          <rect x="-42" y="-11" width="84" height="20" rx="2" fill="#FFF1F2" stroke="#B91C1C" stroke-width="2"/>
+          <text x="0" y="3" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="9.2" font-weight="900" fill="#B91C1C">ENTITY LIST</text>
+        </g>
+        <!-- Right: Asian chip rally area + bold green curve -->
+        <polygon points="116,74 138,70 158,66 176,58 196,44 218,32 242,20 254,18 254,78 116,78" fill="#BBF7D0" opacity="0.65"/>
+        <polyline points="116,74 138,70 158,66 176,58 196,44 218,32 242,20 254,18" fill="none" stroke="#15803D" stroke-width="3.2" stroke-linejoin="round"/>
+        <circle cx="242" cy="20" r="4" fill="#15803D"/>
+        <!-- Rally callout pills positioned cleanly above curve -->
+        
+    <g transform="translate(114,8)">
+      <rect x="0" y="0" width="60" height="16" rx="2.5" fill="#14532D" />
+      <text x="30" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FFFFFF">TAIEX +9%</text>
+    </g>
+        
+    <g transform="translate(178,8)">
+      <rect x="0" y="0" width="60" height="16" rx="2.5" fill="#166534" />
+      <text x="30" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FEF08A">KOSPI +7%</text>
+    </g>
+        <rect x="114" y="28" width="76" height="14" rx="2" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1"/>
+        <text x="152" y="38" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.2" font-weight="800" fill="#14532D">NIKKEI +3.9%</text>
+        
+    <g transform="translate(190,68)">
+      <rect x="0" y="0" width="68" height="15" rx="2.5" fill="#15803D" />
+      <text x="34" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">CONFIRMED</text>
+    </g>
+      </svg></div>
+        <div class="hero-body">
+          <div class="kicker" style="color:#B45309">TECH &amp; MARKETS</div>
+          <h2 class="hero-h">US blacklists Megaspeed as Asian chip stocks surge</h2>
+          <p class="hero-p">Commerce Dept adds Singapore AI firm tied to the Nvidia scandal to its Entity List. Taiwan (+9%), Seoul (+7%) and Tokyo (+3.91% to 58,645) rally on the AI rebound, while Nvidia slips &gt;3% premarket amid US backlash.</p>
+          <div class="src-line">NYT · Guardian · CNBC · CNA</div>
+        </div>
+      </article>
+      <article class="hero-card">
+        <div class="card-loc">
+          <span class="num-dot" style="background:#1D4ED8">2</span>
+          <span class="loc-txt">DOROHUSK &amp; ZAPORIZHZHIA</span>
+        </div>
+        <div class="hero-art"><svg viewBox="0 0 264 88" width="100%" height="88" xmlns="http://www.w3.org/2000/svg">
+        <rect width="264" height="88" fill="#1E2B45"/>
+        <!-- Subtle night horizon glow -->
+        <rect x="0" y="64" width="264" height="24" fill="#2A3957"/>
+        <!-- Left half: Poland radar & border -->
+        <g stroke="#60A5FA" stroke-width="1" opacity="0.45" fill="none">
+          <circle cx="52" cy="70" r="22"/><circle cx="52" cy="70" r="40"/><circle cx="52" cy="70" r="58"/>
+        </g>
+        <path d="M52,70 L78,24 A58,58 0 0,1 102,42 Z" fill="#38BDF8" opacity="0.18"/>
+        <!-- Border line PL | UA -->
+        <line x1="126" y1="6" x2="126" y2="82" stroke="#F8FAFC" stroke-width="1.8" stroke-dasharray="5,4"/>
+        <text x="116" y="18" text-anchor="end" font-family="Noto Sans, sans-serif" font-size="9.5" font-weight="900" fill="#93C5FD">POLAND</text>
+        <text x="136" y="18" text-anchor="start" font-family="Noto Sans, sans-serif" font-size="9.5" font-weight="900" fill="#FDE047">UKRAINE</text>
+        <!-- Drone incursion arc crossing border into Dorohusk -->
+        <path d="M186,34 Q138,18 82,36 Q98,48 136,42" fill="none" stroke="#EF4444" stroke-width="2.4" stroke-dasharray="4,2"/>
+        <!-- Sleek delta drone silhouette -->
+        <polygon points="78,36 94,29 91,36 94,43" fill="#F8FAFC" stroke="#EF4444" stroke-width="1.2"/>
+        <!-- Right half: Zaporizhzhia residential block + rescue floodlight -->
+        <rect x="172" y="34" width="38" height="44" fill="#475569" stroke="#1E293B" stroke-width="1.2"/>
+        <rect x="214" y="42" width="32" height="36" fill="#334155" stroke="#1E293B" stroke-width="1.2"/>
+        <!-- Lit windows -->
+        <g fill="#FDE68A">
+          <rect x="178" y="42" width="6" height="5"/><rect x="188" y="42" width="6" height="5"/>
+          <rect x="178" y="52" width="6" height="5"/><rect x="198" y="52" width="6" height="5"/>
+          <rect x="220" y="50" width="5" height="5"/><rect x="232" y="50" width="5" height="5"/>
+        </g>
+        <!-- Impact plume -->
+        <polygon points="196,38 206,24 210,33 220,25 214,39 224,42 208,45 198,47" fill="#F97316"/>
+        <polygon points="202,38 208,30 212,37 216,33 211,42" fill="#FEF08A"/>
+        
+    <g transform="translate(8,66)">
+      <rect x="0" y="0" width="98" height="16" rx="2.5" fill="#991B1B" />
+      <text x="49" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FFFFFF">AIRSPACE BREACH</text>
+    </g>
+        
+    <g transform="translate(190,68)">
+      <rect x="0" y="0" width="68" height="15" rx="2.5" fill="#15803D" />
+      <text x="34" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">CONFIRMED</text>
+    </g>
+      </svg></div>
+        <div class="hero-body">
+          <div class="kicker" style="color:#1D4ED8">EUROPE · WAR</div>
+          <h2 class="hero-h">Russian drone breaches Poland; Zaporizhzhia hit kills 2</h2>
+          <p class="hero-p">A jet-powered Russian recon UAV enters Polish airspace near Dorohusk during an overnight barrage. Strikes on Zaporizhzhia apartment blocks kill at least 2 and injure 22–40, including children, as crews search rubble.</p>
+          <div class="src-line">Guardian · France24 · PAP · The Hindu</div>
+        </div>
+      </article>
+      <article class="hero-card">
+        <div class="card-loc">
+          <span class="num-dot" style="background:#334155">3</span>
+          <span class="loc-txt">BEIJING &amp; ISLAMABAD</span>
+        </div>
+        <div class="hero-art"><svg viewBox="0 0 264 88" width="100%" height="88" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="spBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0B1933"/>
+            <stop offset="100%" stop-color="#1E3A6E"/>
+          </linearGradient>
+        </defs>
+        <rect width="264" height="88" fill="url(#spBg)"/>
+        <!-- Stars -->
+        <g fill="#E2E8F0">
+          <circle cx="22" cy="18" r="1.1"/><circle cx="48" cy="12" r="1.4"/><circle cx="90" cy="15" r="1"/>
+          <circle cx="152" cy="12" r="1.3"/><circle cx="212" cy="16" r="1.1"/><circle cx="246" cy="24" r="1.5"/>
+          <circle cx="34" cy="44" r="1"/><circle cx="234" cy="48" r="1.1"/>
+        </g>
+        <!-- Sunlit Earth limb -->
+        <ellipse cx="132" cy="122" rx="170" ry="52" fill="#1D4ED8"/>
+        <ellipse cx="132" cy="125" rx="166" ry="49" fill="#0284C7"/>
+        <path d="M18,86 Q132,58 246,86" fill="none" stroke="#7DD3FC" stroke-width="2.5" opacity="0.8"/>
+        <!-- Tiangong space station (center-right) -->
+        <g transform="translate(148,36)">
+          <!-- Solar wings -->
+          <rect x="-42" y="-14" width="32" height="10" fill="#1E40AF" stroke="#93C5FD" stroke-width="1"/>
+          <rect x="-42" y="8" width="32" height="10" fill="#1E40AF" stroke="#93C5FD" stroke-width="1"/>
+          <rect x="24" y="-16" width="36" height="11" fill="#1E40AF" stroke="#93C5FD" stroke-width="1"/>
+          <rect x="24" y="9" width="36" height="11" fill="#1E40AF" stroke="#93C5FD" stroke-width="1"/>
+          <!-- Core & lab modules -->
+          <rect x="-14" y="-7" width="40" height="14" rx="4" fill="#F8FAFC" stroke="#475569" stroke-width="1.2"/>
+          <rect x="-26" y="-5" width="14" height="10" rx="2" fill="#E2E8F0" stroke="#475569" stroke-width="1"/>
+          <rect x="2" y="-12" width="10" height="24" rx="2" fill="#CBD5E1" stroke="#475569" stroke-width="1"/>
+          <!-- Red band accent -->
+          <rect x="14" y="-7" width="4" height="14" fill="#DC2626"/>
+        </g>
+        <!-- Approaching Shenzhou-24 capsule on left -->
+        <g transform="translate(70,38)">
+          <rect x="-18" y="-14" width="14" height="8" fill="#2563EB" stroke="#93C5FD" stroke-width="0.9"/>
+          <rect x="-18" y="6" width="14" height="8" fill="#2563EB" stroke="#93C5FD" stroke-width="0.9"/>
+          <rect x="-12" y="-6" width="16" height="12" rx="2" fill="#F1F5F9" stroke="#334155" stroke-width="1"/>
+          <polygon points="4,-5 16,-2 16,2 4,5" fill="#E2E8F0" stroke="#334155" stroke-width="1"/>
+          <line x1="19" y1="0" x2="46" y2="0" stroke="#FDE047" stroke-width="1.5" stroke-dasharray="3,3"/>
+        </g>
+        <!-- Mission label badges -->
+        
+    <g transform="translate(8,8)">
+      <rect x="0" y="0" width="154" height="16" rx="2.5" fill="#0F766E" />
+      <text x="77" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FFFFFF">SHENZHOU-24 · 1ST FOREIGN CREW</text>
+    </g>
+        <!-- Pakistan crescent-star mini emblem -->
+        <g transform="translate(18,62)">
+          <rect x="0" y="0" width="26" height="17" rx="2" fill="#15803D" stroke="#FFFFFF" stroke-width="0.8"/>
+          <rect x="0" y="0" width="7" height="17" rx="1" fill="#FFFFFF"/>
+          <circle cx="16.5" cy="8.5" r="4.2" fill="#FFFFFF"/>
+          <circle cx="18.2" cy="7.7" r="3.4" fill="#15803D"/>
+        </g>
+        
+    <g transform="translate(190,68)">
+      <rect x="0" y="0" width="68" height="15" rx="2.5" fill="#1D4ED8" />
+      <text x="34" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">OFFICIAL</text>
+    </g>
+      </svg></div>
+        <div class="hero-body">
+          <div class="kicker" style="color:#334155">SPACE · DIPLOMACY</div>
+          <h2 class="hero-h">China taps Pakistan’s Zeeshan Ali for Shenzhou-24</h2>
+          <p class="hero-p">Pakistan Air Force pilot Muhammad Zeeshan Ali will join commander Tang Hongbo and Wu Yi aboard China’s Tiangong orbital station — the first foreign astronaut ever selected for a Chinese crewed spaceflight.</p>
+          <div class="src-line">France24 · Al Jazeera · CNA</div>
+        </div>
+      </article>
+      <aside class="numbers-panel">
+        <div class="numbers-hdr">THE DAY IN NUMBERS</div>
+        <div class="numbers-body">
+      <div class="num-row">
+        <div class="num-val">+9%</div>
+        <div class="num-lbl">Taiwan TAIEX surge (KOSPI +7%, Nikkei +3.9%)</div>
+      </div>
+      <div class="num-row">
+        <div class="num-val">5%</div>
+        <div class="num-lbl">Max global-revenue fine, Australia tech bill</div>
+      </div>
+      <div class="num-row">
+        <div class="num-val">7.3M</div>
+        <div class="num-lbl">People risking food-aid cuts (WFP)</div>
+      </div>
+      <div class="num-row">
+        <div class="num-val">6,500+</div>
+        <div class="num-lbl">Myanmar migrants Malaysia plans to return</div>
+      </div>
+      <div class="num-row">
+        <div class="num-val">$15M</div>
+        <div class="num-lbl">Est. Trump gain on Nvidia stock rebound</div>
+      </div>
+      <div class="num-row">
+        <div class="num-val">1st</div>
+        <div class="num-lbl">Foreign astronaut named to China’s Tiangong</div>
+      </div></div>
+      </aside>
+    </section>
+
+    <section class="grid-row">
+        <article class="grid-card">
+          <div class="card-loc sm">
+            <span class="num-dot sm" style="background:#B91C1C">4</span>
+            <span class="loc-txt">STRAIT OF HORMUZ</span>
+          </div>
+          <div class="grid-art"><svg viewBox="0 0 190 64" width="100%" height="64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="190" height="64" fill="#DFF0F7"/>
+        <!-- Desert coastline silhouette top -->
+        <path d="M0,0 L190,0 L190,15 Q145,22 105,14 Q60,24 0,16 Z" fill="#E6D5B8" stroke="#B89F78" stroke-width="1"/>
+        <!-- Sea surface -->
+        <rect x="0" y="38" width="190" height="26" fill="#0369A1" opacity="0.22"/>
+        <!-- Three dark tanker silhouettes with flames -->
+        <g transform="translate(14,34)">
+          <polygon points="0,8 42,8 46,2 4,2" fill="#1E293B"/>
+          <rect x="6" y="-4" width="8" height="6" fill="#475569"/>
+          <polygon points="22,2 26,-10 30,-2 34,-12 37,2" fill="#EF4444"/>
+          <polygon points="25,2 28,-6 32,2" fill="#FDE047"/>
+        </g>
+        <g transform="translate(68,36)">
+          <polygon points="0,8 40,8 44,2 4,2" fill="#1E293B"/>
+          <rect x="30" y="-4" width="7" height="6" fill="#475569"/>
+          <polygon points="10,2 14,-9 18,-1 22,-11 25,2" fill="#F97316"/>
+          <polygon points="13,2 17,-5 20,2" fill="#FEF08A"/>
+        </g>
+        <g transform="translate(122,32)">
+          <polygon points="0,7 36,7 39,2 3,2" fill="#334155"/>
+          <polygon points="12,2 16,-8 20,-1 24,-9 27,2" fill="#EA580C"/>
+        </g>
+        <!-- Floating naval mine icon -->
+        <g transform="translate(34,53)">
+          <circle cx="0" cy="0" r="5" fill="#0F172A"/>
+          <g stroke="#0F172A" stroke-width="1.5">
+            <line x1="-8" y1="0" x2="8" y2="0"/><line x1="0" y1="-8" x2="0" y2="8"/>
+            <line x1="-6" y1="-6" x2="6" y2="6"/><line x1="-6" y1="6" x2="6" y2="-6"/>
+          </g>
+        </g>
+        
+    <g transform="translate(6,5)">
+      <rect x="0" y="0" width="58" height="16" rx="2.5" fill="#9A3412" />
+      <text x="29" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FFFFFF">3 TANKERS</text>
+    </g>
+        
+    <g transform="translate(118,46)">
+      <rect x="0" y="0" width="67" height="15" rx="2.5" fill="#D97706" />
+      <text x="33.5" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">CLAIM</text>
+    </g>
+      </svg></div>
+          <div class="grid-body">
+            <div class="kicker sm" style="color:#B91C1C">MIDDLE EAST · SEA</div>
+            <h3 class="grid-h">Iran claims mines set 3 oil tankers ablaze</h3>
+            <p class="grid-p">IRGC Navy says three ships burned despite US escort as Treasury widens sanctions; Brent slips near $89.</p>
+            <div class="src-line sm">CNBC · Anadolu</div>
+          </div>
+        </article>
+        <article class="grid-card">
+          <div class="card-loc sm">
+            <span class="num-dot sm" style="background:#0369A1">5</span>
+            <span class="loc-txt">CANBERRA</span>
+          </div>
+          <div class="grid-art"><svg viewBox="0 0 190 64" width="100%" height="64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="190" height="64" fill="#EBF5F0"/>
+        <!-- Canberra Parliament House silhouette left -->
+        <g transform="translate(6,14)">
+          <polygon points="4,40 31,15 58,40" fill="none" stroke="#1E293B" stroke-width="2.2"/>
+          <line x1="31" y1="3" x2="31" y2="15" stroke="#1E293B" stroke-width="2"/>
+          <rect x="31" y="3" width="9" height="5.5" fill="#1D4ED8"/>
+          <rect x="6" y="36" width="50" height="8" fill="#CBD5E1" stroke="#475569" stroke-width="1"/>
+        </g>
+        <!-- Duty of Care Shield cleanly centered with generous daylight -->
+        <g transform="translate(70,9) scale(0.86)">
+          <path d="M26,0 L50,8 L50,24 C50,36 39,43 26,48 C13,43 2,36 2,24 L2,8 Z" fill="#14233C" stroke="#0F766E" stroke-width="2.2"/>
+          <text x="26" y="24" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="16" font-weight="900" fill="#FDE047">5%</text>
+          <text x="26" y="36" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="6.8" font-weight="800" fill="#E2E8F0">FINE CAP</text>
+        </g>
+        
+    <g transform="translate(118,6)">
+      <rect x="0" y="0" width="67" height="16" rx="2.5" fill="#0F766E" />
+      <text x="33.5" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FFFFFF">DUTY OF CARE</text>
+    </g>
+        
+    <g transform="translate(118,46)">
+      <rect x="0" y="0" width="67" height="15" rx="2.5" fill="#1D4ED8" />
+      <text x="33.5" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">OFFICIAL</text>
+    </g>
+      </svg></div>
+          <div class="grid-body">
+            <div class="kicker sm" style="color:#0369A1">OCEANIA · TECH LAW</div>
+            <h3 class="grid-h">Australia backs 5% global-revenue tech-fine bill</h3>
+            <p class="grid-p">Labor and Greens seal Digital Duty of Care deal letting citizens sue platforms over online harm.</p>
+            <div class="src-line sm">Guardian · Al Jazeera</div>
+          </div>
+        </article>
+        <article class="grid-card">
+          <div class="card-loc sm">
+            <span class="num-dot sm" style="background:#B45309">6</span>
+            <span class="loc-txt">ULLEUNGDO, S. KOREA</span>
+          </div>
+          <div class="grid-art"><svg viewBox="0 0 190 64" width="100%" height="64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="190" height="64" fill="#E6EEF8"/>
+        <!-- Radar concentric rings -->
+        <g stroke="#3B82F6" stroke-width="0.9" fill="none" opacity="0.45">
+          <circle cx="56" cy="40" r="16"/><circle cx="56" cy="40" r="30"/><circle cx="56" cy="40" r="46"/>
+        </g>
+        <!-- Ulleungdo island shape -->
+        <polygon points="48,44 55,34 65,38 62,48 51,48" fill="#15803D" stroke="#14532D" stroke-width="1.2"/>
+        <!-- KADIZ boundary arc -->
+        <path d="M98,4 Q112,34 92,62" fill="none" stroke="#DC2626" stroke-width="1.6" stroke-dasharray="4,3"/>
+        <!-- Approaching warplane arrows -->
+        <g fill="#B91C1C">
+          <polygon points="122,16 138,11 135,16 138,21"/>
+          <polygon points="134,28 150,23 147,28 150,33"/>
+        </g>
+        <!-- Scrambled F-15K intercept arrow -->
+        <polygon points="94,26 76,20 80,27 76,33" fill="#1D4ED8"/>
+        <line x1="60" y1="36" x2="88" y2="26" stroke="#1D4ED8" stroke-width="1.8"/>
+        
+    <g transform="translate(6,5)">
+      <rect x="0" y="0" width="76" height="16" rx="2.5" fill="#B91C1C" />
+      <text x="38" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FEF08A">SHELTER ALERT</text>
+    </g>
+        
+    <g transform="translate(118,46)">
+      <rect x="0" y="0" width="67" height="15" rx="2.5" fill="#15803D" />
+      <text x="33.5" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">CONFIRMED</text>
+    </g>
+      </svg></div>
+          <div class="grid-body">
+            <div class="kicker sm" style="color:#B45309">EAST ASIA · DEFENCE</div>
+            <h3 class="grid-h">Seoul scrambles jets, issues island shelter alert</h3>
+            <p class="grid-p">F-15Ks intercept ~5 Russian warplanes near Ulleungdo; residents ordered to shelter for 20 minutes.</p>
+            <div class="src-line sm">Guardian · Japan Times</div>
+          </div>
+        </article>
+        <article class="grid-card">
+          <div class="card-loc sm">
+            <span class="num-dot sm" style="background:#C2410C">7</span>
+            <span class="loc-txt">DHAKA &amp; DELHI</span>
+          </div>
+          <div class="grid-art"><svg viewBox="0 0 190 64" width="100%" height="64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="190" height="64" fill="#F6F1E6"/>
+        <!-- Calendar tile DEC 16 -->
+        <g transform="translate(8,8)">
+          <rect x="0" y="0" width="52" height="48" rx="4" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.3"/>
+          <rect x="0" y="0" width="52" height="15" rx="3" fill="#B91C1C"/>
+          <text x="26" y="11" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.5" font-weight="900" fill="#FFFFFF">DEC</text>
+          <text x="26" y="38" text-anchor="middle" font-family="Noto Serif, serif" font-size="22" font-weight="900" fill="#141D2E">16</text>
+        </g>
+        <!-- Flight path & jet silhouette cleanly below top pill -->
+        <path d="M66,34 Q102,22 142,35" fill="none" stroke="#0F766E" stroke-width="2" stroke-dasharray="4,3"/>
+        <polygon points="146,35 131,29 134,35 130,40" fill="#0F766E"/>
+        <!-- Bangladesh green/red flag badge -->
+        <rect x="68" y="42" width="24" height="15" rx="1.5" fill="#006A4E"/>
+        <circle cx="79" cy="49.5" r="4.5" fill="#F42A41"/>
+        
+    <g transform="translate(96,6)">
+      <rect x="0" y="0" width="88" height="16" rx="2.5" fill="#7F1D1D" />
+      <text x="44" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FFFFFF">ARREST WARNING</text>
+    </g>
+        
+    <g transform="translate(118,46)">
+      <rect x="0" y="0" width="67" height="15" rx="2.5" fill="#15803D" />
+      <text x="33.5" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">CONFIRMED</text>
+    </g>
+      </svg></div>
+          <div class="grid-body">
+            <div class="kicker sm" style="color:#C2410C">SOUTH ASIA · POLITICS</div>
+            <h3 class="grid-h">Hasina plans Dec 16 return; Dhaka warns arrest</h3>
+            <p class="grid-p">Exiled ex-PM requests state flight for Victory Day; Dhaka vows she enters only in handcuffs.</p>
+            <div class="src-line sm">BBC · Al Jazeera · CNA</div>
+          </div>
+        </article>
+        <article class="grid-card">
+          <div class="card-loc sm">
+            <span class="num-dot sm" style="background:#0F766E">8</span>
+            <span class="loc-txt">KUALA LUMPUR</span>
+          </div>
+          <div class="grid-art"><svg viewBox="0 0 190 64" width="100%" height="64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="190" height="64" fill="#E8F3F6"/>
+        <!-- Sea bands -->
+        <rect x="0" y="42" width="190" height="22" fill="#0E7490" opacity="0.22"/>
+        <!-- Repatriation ship silhouette -->
+        <g transform="translate(16,24)">
+          <polygon points="0,20 72,20 78,12 6,12" fill="#1E293B"/>
+          <rect x="14" y="3" width="42" height="9" rx="1.5" fill="#F8FAFC" stroke="#334155" stroke-width="1.2"/>
+          <rect x="20" y="6" width="6" height="4" fill="#38BDF8"/>
+          <rect x="30" y="6" width="6" height="4" fill="#38BDF8"/>
+          <rect x="40" y="6" width="6" height="4" fill="#38BDF8"/>
+          <rect x="48" y="-3" width="8" height="6" fill="#DC2626"/>
+        </g>
+        <!-- Route arrow MY -> MM -->
+        <text x="108" y="20" font-family="Noto Sans, sans-serif" font-size="9" font-weight="900" fill="#1E293B">MY &#8594; MM</text>
+        <text x="108" y="34" font-family="Noto Sans, sans-serif" font-size="14" font-weight="900" fill="#B91C1C">6,500+</text>
+        
+    <g transform="translate(118,46)">
+      <rect x="0" y="0" width="67" height="15" rx="2.5" fill="#15803D" />
+      <text x="33.5" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">CONFIRMED</text>
+    </g>
+      </svg></div>
+          <div class="grid-body">
+            <div class="kicker sm" style="color:#0F766E">SE ASIA · RIGHTS</div>
+            <h3 class="grid-h">Malaysia to return 6,500+ Myanmar migrants</h3>
+            <p class="grid-p">PM Anwar sets Dec sea-and-air returns five days after ICJ ruled Myanmar committed genocide.</p>
+            <div class="src-line sm">Al Jazeera · Guardian · CNA</div>
+          </div>
+        </article></section>
+    <section class="grid-row">
+        <article class="grid-card">
+          <div class="card-loc sm">
+            <span class="num-dot sm" style="background:#B45309">9</span>
+            <span class="loc-txt">TOKYO</span>
+          </div>
+          <div class="grid-art"><svg viewBox="0 0 190 64" width="100%" height="64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="190" height="64" fill="#F7F2E8"/>
+        <!-- Japanese rising sun disc left -->
+        <rect x="10" y="14" width="44" height="30" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+        <circle cx="32" cy="29" r="9" fill="#BC002D"/>
+        <!-- ICC scales of justice centered cleanly between flag & badges -->
+        <g transform="translate(66,14) scale(0.9)" stroke="#14233C" stroke-width="2" fill="none">
+          <line x1="22" y1="4" x2="22" y2="38"/>
+          <line x1="10" y1="38" x2="34" y2="38"/>
+          <line x1="6" y1="11" x2="38" y2="11"/>
+          <path d="M6,11 L1,24 L11,24 Z" fill="#F59E0B" stroke-width="1.2"/>
+          <path d="M38,11 L33,24 L43,24 Z" fill="#F59E0B" stroke-width="1.2"/>
+        </g>
+        
+    <g transform="translate(104,6)">
+      <rect x="0" y="0" width="81" height="16" rx="2.5" fill="#1E3A8A" />
+      <text x="40.5" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FFFFFF">2027 PAID EARLY</text>
+    </g>
+        
+    <g transform="translate(118,46)">
+      <rect x="0" y="0" width="67" height="15" rx="2.5" fill="#1D4ED8" />
+      <text x="33.5" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">OFFICIAL</text>
+    </g>
+      </svg></div>
+          <div class="grid-body">
+            <div class="kicker sm" style="color:#B45309">EAST ASIA · INT’L LAW</div>
+            <h3 class="grid-h">Japan speeds 2027 ICC funding amid US pressure</h3>
+            <p class="grid-p">PM Takaichi tells ICC chief Akane Tokyo will pay full 2027 dues early despite US sanctions.</p>
+            <div class="src-line sm">CNA · Japan Times</div>
+          </div>
+        </article>
+        <article class="grid-card">
+          <div class="card-loc sm">
+            <span class="num-dot sm" style="background:#15803D">10</span>
+            <span class="loc-txt">MINEMBWE, DR CONGO</span>
+          </div>
+          <div class="grid-art"><svg viewBox="0 0 190 64" width="100%" height="64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="190" height="64" fill="#EDF3EA"/>
+        <!-- South Kivu highland ridges -->
+        <polygon points="0,64 0,40 36,28 74,42 118,24 162,38 190,30 190,64" fill="#86A789"/>
+        <polygon points="0,64 0,48 52,38 96,50 144,36 190,46 190,64" fill="#4F775A"/>
+        <!-- Dashed descent path + prop aircraft silhouette -->
+        <path d="M20,14 Q68,14 108,34" fill="none" stroke="#DC2626" stroke-width="2" stroke-dasharray="4,3"/>
+        <g transform="translate(86,20) rotate(22)">
+          <rect x="-12" y="-2.5" width="24" height="5" rx="2" fill="#1E293B"/>
+          <rect x="-3" y="-11" width="5" height="22" rx="1" fill="#334155"/>
+          <rect x="-12" y="-6" width="3" height="12" fill="#475569"/>
+        </g>
+        <!-- Smoke plume on ridge -->
+        <circle cx="114" cy="34" r="5" fill="#F97316"/>
+        <circle cx="118" cy="28" r="4" fill="#64748B" opacity="0.75"/>
+        
+    <g transform="translate(6,5)">
+      <rect x="0" y="0" width="58" height="16" rx="2.5" fill="#14532D" />
+      <text x="29" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FFFFFF">MINEMBWE</text>
+    </g>
+        
+    <g transform="translate(118,46)">
+      <rect x="0" y="0" width="67" height="15" rx="2.5" fill="#D97706" />
+      <text x="33.5" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">CLAIM</text>
+    </g>
+      </svg></div>
+          <div class="grid-body">
+            <div class="kicker sm" style="color:#15803D">AFRICA · CONFLICT</div>
+            <h3 class="grid-h">DR Congo plane missing; rebels claim shootdown</h3>
+            <p class="grid-p">FRN rebels claim downing military Cessna 208 carrying a South African pilot and Ugandan officer.</p>
+            <div class="src-line sm">BBC · Xinhua</div>
+          </div>
+        </article>
+        <article class="grid-card">
+          <div class="card-loc sm">
+            <span class="num-dot sm" style="background:#334155">11</span>
+            <span class="loc-txt">UN &amp; ROME</span>
+          </div>
+          <div class="grid-art"><svg viewBox="0 0 190 64" width="100%" height="64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="190" height="64" fill="#EAF2F8"/>
+        <rect x="0" y="42" width="190" height="22" fill="#1D4ED8" opacity="0.16"/>
+        <!-- Grain freighter -->
+        <g transform="translate(12,24)">
+          <polygon points="0,19 64,19 70,11 4,11" fill="#1E3A8A"/>
+          <rect x="10" y="3" width="14" height="8" fill="#D97706"/>
+          <rect x="26" y="3" width="14" height="8" fill="#F59E0B"/>
+          <rect x="42" y="3" width="14" height="8" fill="#D97706"/>
+          <rect x="56" y="-2" width="8" height="13" fill="#F8FAFC" stroke="#1E293B" stroke-width="1"/>
+        </g>
+        <!-- Red chokepoint barrier -->
+        <g transform="translate(92,16)">
+          <rect x="0" y="0" width="8" height="32" rx="2" fill="#B91C1C"/>
+          <line x1="-4" y1="8" x2="12" y2="24" stroke="#FEF08A" stroke-width="2.2"/>
+          <line x1="12" y1="8" x2="-4" y2="24" stroke="#FEF08A" stroke-width="2.2"/>
+        </g>
+        <text x="112" y="23" font-family="Noto Sans, sans-serif" font-size="13.5" font-weight="900" fill="#B91C1C">7.3M</text>
+        <text x="112" y="35" font-family="Noto Sans, sans-serif" font-size="8" font-weight="800" fill="#334155">+$727M COST</text>
+        
+    <g transform="translate(118,46)">
+      <rect x="0" y="0" width="67" height="15" rx="2.5" fill="#1D4ED8" />
+      <text x="33.5" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">OFFICIAL</text>
+    </g>
+      </svg></div>
+          <div class="grid-body">
+            <div class="kicker sm" style="color:#334155">GLOBAL · FOOD AID</div>
+            <h3 class="grid-h">WFP: wars choke routes, risking aid for 7.3M</h3>
+            <p class="grid-p">Chief Luke Lindberg warns Hormuz, Red Sea and Black Sea bottlenecks add $727M in food costs.</p>
+            <div class="src-line sm">Al Jazeera · Japan Times</div>
+          </div>
+        </article>
+        <article class="grid-card">
+          <div class="card-loc sm">
+            <span class="num-dot sm" style="background:#6D28D9">12</span>
+            <span class="loc-txt">VILLAVICENCIO</span>
+          </div>
+          <div class="grid-art"><svg viewBox="0 0 190 64" width="100%" height="64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="190" height="64" fill="#F8EFEA"/>
+        <!-- Civic headquarters facade shifted left for clean separation -->
+        <rect x="10" y="16" width="76" height="40" fill="#E2D6C8" stroke="#64748B" stroke-width="1.3"/>
+        <rect x="6" y="12" width="84" height="6" fill="#475569"/>
+        <g fill="#475569">
+          <rect x="16" y="24" width="10" height="12"/><rect x="32" y="24" width="10" height="12"/>
+          <rect x="48" y="24" width="10" height="12"/><rect x="64" y="24" width="10" height="12"/>
+        </g>
+        <!-- Sharp blast starburst cleanly clear of CONFIRMED badge -->
+        <polygon points="88,34 99,16 105,28 120,18 112,33 126,38 110,42 113,52 99,44 87,49 92,39" fill="#EA580C"/>
+        <polygon points="95,34 102,24 106,32 113,28 108,38 97,40" fill="#FEF08A"/>
+        <!-- Colombian tri-band accent -->
+        <rect x="150" y="8" width="32" height="8" fill="#FACC15"/>
+        <rect x="150" y="16" width="32" height="4" fill="#1D4ED8"/>
+        <rect x="150" y="20" width="32" height="4" fill="#DC2626"/>
+        
+    <g transform="translate(118,46)">
+      <rect x="0" y="0" width="67" height="15" rx="2.5" fill="#15803D" />
+      <text x="33.5" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">CONFIRMED</text>
+    </g>
+      </svg></div>
+          <div class="grid-body">
+            <div class="kicker sm" style="color:#6D28D9">AMERICAS · SECURITY</div>
+            <h3 class="grid-h">Car bomb blasts Colombia’s Meta governor office</h3>
+            <p class="grid-p">Explosion wrecks civic buildings and injures over a dozen; President De la Espriella blames cartels.</p>
+            <div class="src-line sm">Al Jazeera · The Hindu</div>
+          </div>
+        </article>
+        <article class="grid-card">
+          <div class="card-loc sm">
+            <span class="num-dot sm" style="background:#1D4ED8">13</span>
+            <span class="loc-txt">LONDON</span>
+          </div>
+          <div class="grid-art"><svg viewBox="0 0 190 64" width="100%" height="64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="190" height="64" fill="#EFEFF9"/>
+        <!-- Smartphone frame -->
+        <rect x="10" y="6" width="34" height="52" rx="5" fill="#1E293B" stroke="#0F172A" stroke-width="1.5"/>
+        <rect x="14" y="12" width="26" height="38" rx="2" fill="#FFFFFF"/>
+        <!-- AI Sparkle inside phone -->
+        <polygon points="27,19 29.5,26.5 37,29 29.5,31.5 27,39 24.5,31.5 17,29 24.5,26.5" fill="#4F46E5"/>
+        <!-- Shopping bag icon cleanly separated from top-right pill -->
+        <g transform="translate(56,15)">
+          <rect x="0" y="8" width="32" height="29" rx="3" fill="#2563EB"/>
+          <path d="M9,8 C9,0 23,0 23,8" fill="none" stroke="#1E3A8A" stroke-width="2.5"/>
+          <text x="16" y="27" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="900" fill="#FFFFFF">MUSE</text>
+        </g>
+        <!-- UK regulator pill fits fully inside 190px frame -->
+        
+    <g transform="translate(107,6)">
+      <rect x="0" y="0" width="78" height="16" rx="2.5" fill="#3730A3" />
+      <text x="39" y="11.2" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.8" font-weight="800" letter-spacing="0.3" fill="#FFFFFF">UK · ICO/CMA</text>
+    </g>
+        
+    <g transform="translate(118,46)">
+      <rect x="0" y="0" width="67" height="15" rx="2.5" fill="#15803D" />
+      <text x="33.5" y="10.8" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="8.4" font-weight="800" letter-spacing="0.4" fill="#FFFFFF">CONFIRMED</text>
+    </g>
+      </svg></div>
+          <div class="grid-body">
+            <div class="kicker sm" style="color:#1D4ED8">EUROPE · AI &amp; TECH</div>
+            <h3 class="grid-h">Meta launches Muse AI shopping agent in UK</h3>
+            <p class="grid-p">Agent debuts on WhatsApp and apps with M&amp;S and Sainsbury’s as UK ICO and CMA flag privacy risks.</p>
+            <div class="src-line sm">Guardian · ITV</div>
+          </div>
+        </article></section>
+
+    <section class="lower-band">
+      <div class="map-box">
+        <div class="sec-hdr"><span>WHERE IT HAPPENED</span><span class="sub">20 global pins</span></div>
+        <svg viewBox="0 0 286 174" width="100%" height="174" xmlns="http://www.w3.org/2000/svg">
+    <rect width="286" height="174" rx="3" fill="#E8F1F7" stroke="#CBD5E1" stroke-width="1"/>
+    <!-- Subtle graticule -->
+    <g stroke="#CFE0EC" stroke-width="0.6" stroke-dasharray="2,2">
+      <line x1="0" y1="84" x2="286" y2="84"/>
+      <line x1="0" y1="46" x2="286" y2="46"/>
+      <line x1="0" y1="122" x2="286" y2="122"/>
+      <line x1="71" y1="0" x2="71" y2="174"/>
+      <line x1="143" y1="0" x2="143" y2="174"/>
+      <line x1="214" y1="0" x2="214" y2="174"/>
+    </g>
+    <!-- Crisp stylized world landmasses -->
+    <g fill="#D8E1D3" stroke="#96A896" stroke-width="0.9" stroke-linejoin="round">
+      <!-- North America -->
+      <path d="M16,32 L46,24 L76,26 L94,40 L84,56 L72,62 L66,76 L72,84 L62,86 L50,74 L38,68 L28,54 L14,44 Z"/>
+      <!-- Greenland -->
+      <path d="M88,12 L114,10 L118,24 L102,32 L88,24 Z"/>
+      <!-- South America -->
+      <path d="M72,88 L90,86 L108,100 L114,114 L102,136 L88,154 L80,150 L78,126 L70,104 Z"/>
+      <!-- Europe -->
+      <path d="M130,36 L146,24 L168,26 L176,38 L174,56 L158,64 L144,62 L134,54 Z"/>
+      <!-- UK / Ireland -->
+      <path d="M128,44 L134,42 L136,52 L129,52 Z"/>
+      <!-- Africa -->
+      <path d="M132,68 L156,66 L174,76 L182,92 L176,114 L164,140 L152,140 L142,114 L132,96 L126,80 Z"/>
+      <!-- Madagascar -->
+      <path d="M180,118 L185,118 L184,130 L179,129 Z"/>
+      <!-- Asia + Middle East -->
+      <path d="M174,24 L218,20 L256,28 L272,42 L262,56 L248,66 L244,82 L228,96 L216,92 L206,86 L194,86 L180,84 L172,72 L176,56 Z"/>
+      <!-- Japan -->
+      <path d="M254,58 L260,54 L263,68 L256,74 L252,68 Z"/>
+      <!-- Maritime SE Asia -->
+      <path d="M218,100 L232,102 L238,108 L224,110 Z"/>
+      <path d="M240,94 L247,96 L246,106 L239,104 Z"/>
+      <!-- Australia -->
+      <path d="M232,116 L260,114 L270,126 L266,142 L248,144 L232,134 Z"/>
+      <!-- New Zealand -->
+      <path d="M273,140 L278,138 L276,150 L271,150 Z"/>
+    </g>
+    <!-- Dashed US-to-Asia chip/export-control link for story #1 -->
+    <path d="M76,52 Q158,12 240,78" fill="none" stroke="#B45309" stroke-width="1.1" stroke-dasharray="3,2.5" opacity="0.7"/>
+    <!-- Numbered Story Pins across all continents -->
+    
+        <g transform="translate(70,54)">
+          <circle r="6.6" fill="#B45309" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">1</text>
+        </g>
+        <g transform="translate(164,47)">
+          <circle r="6.6" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">2</text>
+        </g>
+        <g transform="translate(222,58)">
+          <circle r="6.6" fill="#334155" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">3</text>
+        </g>
+        <g transform="translate(185,78)">
+          <circle r="6.6" fill="#B91C1C" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">4</text>
+        </g>
+        <g transform="translate(257,132)">
+          <circle r="6.6" fill="#0369A1" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">5</text>
+        </g>
+        <g transform="translate(241,60)">
+          <circle r="6.6" fill="#B45309" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">6</text>
+        </g>
+        <g transform="translate(211,81)">
+          <circle r="6.6" fill="#C2410C" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">7</text>
+        </g>
+        <g transform="translate(222,95)">
+          <circle r="6.6" fill="#0F766E" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">8</text>
+        </g>
+        <g transform="translate(262,69)">
+          <circle r="6.6" fill="#B45309" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">9</text>
+        </g>
+        <g transform="translate(163,106)">
+          <circle r="6.6" fill="#15803D" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">10</text>
+        </g>
+        <g transform="translate(149,61)">
+          <circle r="6.6" fill="#334155" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">11</text>
+        </g>
+        <g transform="translate(84,97)">
+          <circle r="6.6" fill="#6D28D9" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">12</text>
+        </g>
+        <g transform="translate(134,47)">
+          <circle r="6.6" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="7.4" font-weight="900" fill="#FFFFFF">13</text>
+        </g>
+        <g transform="translate(52,52)">
+          <circle r="5.8" fill="#6D28D9" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="6.6" font-weight="900" fill="#FFFFFF">18</text>
+        </g>
+        <g transform="translate(144,88)">
+          <circle r="5.8" fill="#15803D" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="6.6" font-weight="900" fill="#FFFFFF">20</text>
+        </g>
+        <g transform="translate(52,74)">
+          <circle r="5.8" fill="#6D28D9" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="6.6" font-weight="900" fill="#FFFFFF">21</text>
+        </g>
+        <g transform="translate(66,103)">
+          <circle r="5.8" fill="#6D28D9" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="6.6" font-weight="900" fill="#FFFFFF">22</text>
+        </g>
+        <g transform="translate(234,112)">
+          <circle r="5.8" fill="#0F766E" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="6.6" font-weight="900" fill="#FFFFFF">29</text>
+        </g>
+        <g transform="translate(158,132)">
+          <circle r="5.8" fill="#15803D" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="6.6" font-weight="900" fill="#FFFFFF">33</text>
+        </g>
+        <g transform="translate(274,112)">
+          <circle r="5.8" fill="#0369A1" stroke="#FFFFFF" stroke-width="1.2"/>
+          <text y="2.6" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="6.6" font-weight="900" fill="#FFFFFF">35</text>
+        </g>
+    <text x="6" y="168" font-family="Noto Sans, sans-serif" font-size="7.2" font-weight="700" fill="#475569">20 global pins (1–13 + key briefs) · Dashed arc = US–Asia chip impact (#1)</text>
+  </svg>
+      </div>
+      <div class="digest-box">
+        <div class="sec-hdr"><span>ALSO ON TUESDAY 24 NOVEMBER — 22 MORE DATED STORIES</span><span class="sub">All 24 Nov 2026 UTC &middot; 9 regions</span></div>
+        <div class="digest-cols">
+          <div class="d-col">
+        <div class="d-row">
+          <span class="d-num" style="background:#1D4ED8">14</span>
+          <div class="d-txt"><b>NATO · Space:</b> Chief Mark Rutte vows space defence after reports Russia plans nuclear satellite launch <span class="d-src">BBC · Guardian</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#1D4ED8">15</span>
+          <div class="d-txt"><b>Kyiv · Diplomacy:</b> Zelensky urges four-way peace talks with Russia, Europe &amp; US “as soon as possible” <span class="d-src">France24</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#1D4ED8">16</span>
+          <div class="d-txt"><b>London · Policy:</b> UK minister Timms unveils PIP disability-benefit review aimed at “rehumanising” claims <span class="d-src">Guardian</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#6D28D9">17</span>
+          <div class="d-txt"><b>Washington · Politics:</b> Filings show Trump gained up to $15M on Nvidia surge as bipartisan lawmakers object <span class="d-src">Guardian · BBC</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#6D28D9">18</span>
+          <div class="d-txt"><b>Iowa, US · Courts:</b> Federal court clears US Army to detonate degraded lead-azide explosives at Iowa plant <span class="d-src">Guardian · CNBC</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#6D28D9">19</span>
+          <div class="d-txt"><b>Pennsylvania · Health:</b> State confirms 9th measles death in outbreak topping 1,600 cases across 46 counties <span class="d-src">Al Jazeera · CBS</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#15803D">20</span>
+          <div class="d-txt"><b>Niamey, Niger · Economy:</b> Inaugural UNDP-backed Niger International Investment Forum opens Nov 24–26 in Niamey <span class="d-src">UNDP</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#6D28D9">21</span>
+          <div class="d-txt"><b>Mexico City · Crime:</b> Mexico to try cartel boss “El Chapo Isidro” locally; officials confirm US drone aided raid <span class="d-src">Al Jazeera · F24</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#6D28D9">22</span>
+          <div class="d-txt"><b>Galápagos · Climate:</b> Severe El Niño flash floods inundate Santa Cruz neighborhoods, displacing residents <span class="d-src">Africanews</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#6D28D9">23</span>
+          <div class="d-txt"><b>Landover, US · NFL:</b> Commanders stun Bengals 22–20 on rookie Drew Stevens’ walk-off fifth field goal <span class="d-src">Japan Times · SI</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#B91C1C">24</span>
+          <div class="d-txt"><b>Doha &amp; DC · Gulf:</b> Qatar PM meets Sec. Rubio to revive US–Iran de-escalation talks and Hormuz security <span class="d-src">Al Jazeera</span></div>
+        </div></div>
+          <div class="d-col">
+        <div class="d-row">
+          <span class="d-num" style="background:#B91C1C">25</span>
+          <div class="d-txt"><b>Tel Aviv · Aviation:</b> Israeli minister approves return of Flydubai flights from Dubai pending security sign-off <span class="d-src">Al Jazeera</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#B91C1C">26</span>
+          <div class="d-txt"><b>Tehran · Rights:</b> Iranian site reports authorities flogged singer Parastoo Ahmadi and four crew <span class="d-src">The Hindu</span><span class="mini-tag rep">REPORTED</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#B45309">27</span>
+          <div class="d-txt"><b>Beijing · Justice:</b> China sentences official “Ma” to death for leaking state secrets for over $150K <span class="d-src">Guardian · CNA</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#B45309">28</span>
+          <div class="d-txt"><b>Pyongyang · Diplomacy:</b> North Korea threatens to shut Swiss office in Pyongyang over youth-camp sanctions <span class="d-src">SCMP · AsiaNews</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#0F766E">29</span>
+          <div class="d-txt"><b>Jakarta · Politics:</b> Indonesia charges ex-police chief Listyo Sigit Prabowo with treason in wiretap plot <span class="d-src">CNA · AP</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#0F766E">30</span>
+          <div class="d-txt"><b>Kuala Lumpur · Tech:</b> Malaysia advises data centres to sever links with seven US-blacklisted AI companies <span class="d-src">CNA</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#C2410C">31</span>
+          <div class="d-txt"><b>Nepal–Sikkim · Quake:</b> M5.3–5.6 earthquake strikes 67 km WNW of Mangan on Himalayan border at 01:32 UTC <span class="d-src">USGS · The Hindu</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#C2410C">32</span>
+          <div class="d-txt"><b>New Delhi · Trade:</b> Officials say India and Canada are “very close” to finalizing bilateral trade pact <span class="d-src">The Hindu</span><span class="mini-tag rep">REPORTED</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#15803D">33</span>
+          <div class="d-txt"><b>South Africa · Climate:</b> Joburg, Tshwane and Cape Town tighten water restrictions as severe El Niño builds <span class="d-src">Africanews</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#0369A1">34</span>
+          <div class="d-txt"><b>Canberra · Diplomacy:</b> Australia PM Albanese &amp; Singapore PM Wong sign chip, food and carbon-capture pacts <span class="d-src">PMO SG · CNA</span></div>
+        </div>
+        <div class="d-row">
+          <span class="d-num" style="background:#0369A1">35</span>
+          <div class="d-txt"><b>Honiara · Pacific:</b> Solomon Islands opposition warns PM Wale against scrapping China security pact <span class="d-src">RNZ</span></div>
+        </div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="date-check">
+    <div class="dc-badge">DATE<br/>CHECK</div>
+    <div class="dc-text">
+      <b class="inc">Included:</b> Every story on this page happened or was first reported on Tuesday 24 November 2026 (00:00–09:45 UTC).
+      <b class="exc">Excluded as earlier days’ news:</b> Mon 23 Nov — Huang’s Nvidia reinstatement &amp; +31.5% close, CrowdStrike–Zscaler $43.9B deal, NATO AWACS to Poland, EU 22nd sanctions, UK Rohingya genocide move, Belgian ATC strike, Puigdemont amnesty, Denmark Mjølnerparken ruling, VA/OR Grok AI suits, FIFA 2031/35 hosts. Sun 22 Nov — COP31 no-deal end, Benghazi Merkury blast, 186-drone Kyiv raid, HK 98.79% poll, Vegas GP, Alcaraz ATP Finals.
+    </div>
+  </section>
+
+  <footer class="legend">
+    <div class="leg-pills">
+      <span><b class="lp" style="background:#15803D">CONFIRMED</b>2+ wires</span>
+      <span><b class="lp" style="background:#1D4ED8">OFFICIAL</b>govt/court/agency</span>
+      <span><b class="lp" style="background:#475569">REPORTED</b>single outlet</span>
+      <span><b class="lp" style="background:#D97706">CLAIM</b>one side’s account</span>
+    </div>
+    <div>Original vector illustrations &amp; map drawn in code &middot; Sources: BBC, Guardian, NYT, Al Jazeera, France24, CNA, CNBC, AP, USGS, RNZ</div>
+  </footer>
+</main>
+</body>
+</html>
