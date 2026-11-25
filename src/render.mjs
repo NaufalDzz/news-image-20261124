@@ -1,4 +1,4 @@
-// Offline build script: audits story/date/pin invariants, renders src/template.mjs -> .build/page.html
+// Offline build script: audits story/date invariants, renders src/template.mjs -> .build/page.html
 // -> deterministic 1024x1024 entry.png via headless Chromium, and validates PNG bounds & byte cap.
 import { mkdirSync, writeFileSync, readFileSync, statSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
@@ -77,7 +77,8 @@ console.log(
   JSON.stringify({
     status: 'ok',
     stories: total,
-    geo_pins: audit.geoPins,
+    regions_count: audit.regions,
+    fields_count: audit.fields,
     regions: counts,
     html_bytes: htmlSize,
     png_bytes: info.bytes,
