@@ -1,11 +1,11 @@
-// Offline build script: renders src/template.mjs -> .build/page.html -> deterministic 1024x1024 entry.png
-// via headless Chromium, and validates PNG header, dimensions, IEND chunk, and <= 1 MiB byte cap.
+// Offline build script: audits story/date/pin invariants, renders src/template.mjs -> .build/page.html
+// -> deterministic 1024x1024 entry.png via headless Chromium, and validates PNG bounds & byte cap.
 import { mkdirSync, writeFileSync, readFileSync, statSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { buildBroadsheetHtml } from './template.mjs';
-import { computeRegionCounts } from './stories.mjs';
+import { computeRegionCounts, auditStoryConsistency } from './stories.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = dirname(HERE);
@@ -49,6 +49,7 @@ function validatePng(filePath) {
 }
 
 mkdirSync(BUILD_DIR, { recursive: true });
+const audit = auditStoryConsistency();
 const { total, counts } = computeRegionCounts();
 const html = buildBroadsheetHtml();
 writeFileSync(HTML_PATH, html, 'utf8');
@@ -76,6 +77,7 @@ console.log(
   JSON.stringify({
     status: 'ok',
     stories: total,
+    geo_pins: audit.geoPins,
     regions: counts,
     html_bytes: htmlSize,
     png_bytes: info.bytes,
